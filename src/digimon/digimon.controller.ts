@@ -6,7 +6,7 @@ import { DigimonModel } from './digimon.interface';
 export class DigimonController {
   constructor(private readonly digimonsService: DigimonService) {}
 
-  @Get()
+  @Get(['', '/digimon'])
   findAll(): Promise<DigimonModel[]> {
     return this.digimonsService.findAll();
   }
