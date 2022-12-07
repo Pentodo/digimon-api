@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { Digimon } from './digimon.interface';
-import { DigimonModel } from './digimon.interface';
+import { firstValueFrom, map, catchError, of } from 'rxjs';
 
 @Injectable()
 export class DigimonService {
@@ -11,6 +11,13 @@ export class DigimonService {
     return firstValueFrom(
       this.http
         .get<Digimon[]>('https://digimon-api.vercel.app/api/digimon')
+        .pipe(
+          map((response) => response?.data),
+          catchError((error: any) => {
+            console.error(error.message);
+            return of([] as Digimon[]);
+          }),
+        ),
     );
   }
 }
