@@ -1,17 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
-import { firstValueFrom, map } from 'rxjs';
+import { Digimon } from './digimon.interface';
 import { DigimonModel } from './digimon.interface';
 
 @Injectable()
 export class DigimonService {
-  constructor(private readonly httpService: HttpService) {}
+  constructor(private readonly http: HttpService) {}
 
-  findAll(): Promise<DigimonModel[]> {
+  findAll(): Promise<Digimon[]> {
     return firstValueFrom(
-      this.httpService
-        .get<DigimonModel[]>('https://digimon-api.vercel.app/api/digimon')
-        .pipe(map((response) => response?.data)),
+      this.http
+        .get<Digimon[]>('https://digimon-api.vercel.app/api/digimon')
     );
   }
 }

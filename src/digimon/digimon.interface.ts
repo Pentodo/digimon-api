@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-export class DigimonModel {
+export class Digimon {
   @ApiProperty({ type: String })
   name: string;
   @ApiProperty({ type: String })
