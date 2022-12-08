@@ -13,6 +13,15 @@ export class DigimonService {
         .get<Digimon[]>('https://digimon-api.vercel.app/api/digimon')
         .pipe(
           map((response) => response?.data),
+          map((digimons) => {
+            digimons.forEach((digimon) => {
+              if (digimon.level === 'Training') {
+                digimon.level = 'In Training';
+              }
+            });
+
+            return digimons;
+          }),
           catchError((error: any) => {
             console.error(error.message);
             return of([] as Digimon[]);
