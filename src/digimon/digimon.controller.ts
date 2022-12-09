@@ -1,4 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
+
 import { DigimonService } from './digimon.service';
 import { Digimon } from './digimon.interface';
 

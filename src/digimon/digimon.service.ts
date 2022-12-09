@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
-import { Digimon } from './digimon.interface';
 import { firstValueFrom, map, catchError, of } from 'rxjs';
+
+import { Digimon } from './digimon.interface';
 
 @Injectable()
 export class DigimonService {
